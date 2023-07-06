@@ -1,0 +1,287 @@
+/* ROOT */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(180deg, #0A0F27 1.42%, #0F2B55 100%);
+  min-height: 100vh !important;
+}
+
+/* Navbar Styles */
+.header .navbar {
+  background-color: transparent !important;
+}
+
+.navbar-brand {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px !important;
+  line-height: 49px;
+  
+  background: linear-gradient(90deg, #AE67FA 0%, #F49867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-item .nav-link{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  /* identical to box height, or 123% */
+  padding-left: 1.5cm !important;
+
+  color: #FFFFFF !important; 
+}
+
+.custom-login {
+  background-color: transparent !important;
+  color: #FFFF !important;
+  padding-right: 0.5cm !important;
+}
+
+.custom-register {
+  background-color: #EC780E !important;
+  color: #FFFF !important;
+}
+
+.custom-access {
+  background-color: #0A0F27;
+  color: #FFF;
+}
+
+/* Initial Page */
+
+.row-content {
+    padding-top: 2cm;
+    align-items: center;
+    place-content: center;
+}
+
+.brand-slogan {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    text-align: left;
+    background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-description {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    color: #81AFDD;
+    text-align: left;
+}
+
+.custom-input {
+    background: #052D56 !important;
+    border: none !important;
+    color: #AFAFA5 !important;
+    min-height: 1cm !important;
+}
+
+.custom-input::placeholder {
+    color: #AFAFA5 !important;
+}
+
+.custom-btn {
+    background-color: #EC780E !important;
+    color: #ffff !important;
+    border: none !important;
+}
+
+/* Register page */
+
+.form-container {
+  padding-top: 1cm !important;
+}
+
+.row-form-container {
+  padding-top: 1cm;
+}
+
+.brand-instructions {
+  font-style: normal;
+  color: #FFFF !important;
+  font-weight: 700 !important;
+}
+
+.custom-mb {
+  padding-top: 0.5cm;
+}
+
+.custom-label {
+  color: #FFFF !important;
+  font-weight: 700 !important;
+}
+
+.custom-form {
+  background: #052D56 !important;
+  color: #AFAFA5 !important;
+  border: none !important
+}
+
+.custom-form::placeholder {
+  color: #AFAFA5 !important;
+}
+
+.row-date-container {
+  padding-top: 0.5cm !important;
+}
+
+.custom-btn-container {
+  --bs-gutter-x: 0 !important;
+  padding-top: 1.5cm !important;
+
+}
+
+.any-text {
+  color: #AFAFA5 !important;
+}
+
+/* UserIndex Page */
+
+.user-container {
+  padding-top: 1em;
+}
+
+.user-container p {
+  font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: left;
+    background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.class-container{
+  padding-bottom: 6em;
+  color: #FFF;
+}
+
+.class-container .col {
+  padding-top: 3em;
+}
+
+.new-class-container {
+  background-color: #052D56;
+}
+
+.data-form {
+  padding: 2.5em 5em 5em 5em;
+}
+
+.data-form p {
+  font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: left;
+    background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.data-form h5 {
+  color: #fff;
+}
+
+.data-form .custom-form {
+  color: #052D56 !important;
+  background: #8AB7E5 !important;
+}
+
+.data-form .custom-form::placeholder{
+  color: #052D56 !important;
+}
+
+.data-form .submit-button-container {
+  padding-top: 2em;
+}
+
+/* Detail Class Page */
+
+.class-detail-container {
+  padding-top: 2em;
+}
+
+.class-detail-container p {
+  font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: left;
+    background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.class-member-container {
+  background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%) !important;
+  border-radius: 5px;
+}
+
+.member-grid {
+  padding: 3rem;
+}
+
+.member-grid h4 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.member-grid .row .col {
+  padding-top: 2em;
+}
+
+.access-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #0A0F27;
+  border-radius: 15px;
+}
+
+/* Monitoring page */
+
+.monitoring-flag{
+  font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    text-align: left;
+    background: linear-gradient(89.88deg, #AE67FA -1.39%, #F49867 104.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.monitoring-container{
+  padding-top: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monitoring-container Link {
+  display: flex;
+}

@@ -1,0 +1,17 @@
+.card-student{
+    background: rgba(44, 53, 61, 0.5) !important;
+    border: none !important;
+    width: 120px !important;
+    height: 140px !important;
+}
+
+.card-student .card-body-student h5 {
+    font-size: 14px;
+}
+
+.card-student .card-body-student img {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
