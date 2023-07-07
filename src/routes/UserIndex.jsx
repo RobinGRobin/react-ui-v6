@@ -15,7 +15,6 @@ export default function UserIndex() {
     const UserClases = async (idUser) => {
         const classes = await getProfessorClassesRegistered(idUser);
         const dataPre = JSON.parse(await classes.text());
-        console.log("dataPre: ", dataPre);
         for (let i = 0; i < dataPre.length; i++) {
             if (
                 !classInfo.find((element) => element.name === dataPre[i].name)
@@ -32,7 +31,6 @@ export default function UserIndex() {
     };
 
     const ShowUserClasses = () => {
-        console.log("classInfo: ", classInfo);
         return classInfo.map((item) => (
             <div className="row" key={item.name}>
                 <div className="col">

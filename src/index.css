@@ -158,6 +158,13 @@
 
 /* UserIndex Page */
 
+.cam-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
 .user-container {
   padding-top: 1em;
 }

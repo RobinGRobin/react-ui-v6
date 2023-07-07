@@ -1,6 +1,6 @@
-const registerUserURL = `http://localhost:3002/class/`;
-const registerUserInClassURL = `http://localhost:3002/class/`;
-const getUserClassesURL = `http://localhost:3002/class/user/`;
+const registerUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
+const registerUserInClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
+const getUserClassesURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/user/`;
 
 export async function registerNewClass(updates, idprofessor) {
     const registerClassBody = {

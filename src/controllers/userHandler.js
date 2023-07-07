@@ -1,5 +1,5 @@
-const registerUserURL = `http://localhost:3002/auth/register`;
-const loginUserURL = `http://localhost:3002/auth/login`;
+const registerUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/auth/register`;
+const loginUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/auth/login`;
 
 function calculateAge(day, month, year) {
     let today = new Date();
