@@ -32,7 +32,7 @@ export default function UserMonitoring() {
                     idClass
                 );
                 times++;
-                if (times > 10 || !webCamRef) {
+                if (times > 12 || !webCamRef) {
                     times = 0;
                     clearInterval(intervalId);
                 }
@@ -40,7 +40,7 @@ export default function UserMonitoring() {
                 console.log(error);
                 clearInterval(intervalId);
             }
-        }, 30000);
+        }, 300000);
     }
 
     async function emotionsInClass(idClass) {
