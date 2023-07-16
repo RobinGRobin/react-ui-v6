@@ -13,7 +13,10 @@ export default function UserIndex() {
     const [classInfo, setClassInfo] = useState([]);
 
     const UserClases = async (idUser) => {
-        const classes = await getProfessorClassesRegistered(idUser);
+        const classes = await getProfessorClassesRegistered(
+            idUser,
+            userInfo.token
+        );
         const dataPre = JSON.parse(await classes.text());
         for (let i = 0; i < dataPre.length; i++) {
             if (
@@ -56,7 +59,11 @@ export default function UserIndex() {
     const handleSubmitProfessor = async (event, idUser) => {
         const data = event.target;
         try {
-            const response = await registerNewClass(data, idUser);
+            const response = await registerNewClass(
+                data,
+                idUser,
+                userInfo.token
+            );
             const dataReceived = await response.text();
             if (dataReceived === "CLASS_ALREADY_REGISTERED") {
                 alert("La clase ya está registrada");
@@ -75,7 +82,7 @@ export default function UserIndex() {
         const data = event.target;
         try {
             const response = await (
-                await registerUserInClass(data, idUser)
+                await registerUserInClass(data, idUser, userInfo.token)
             ).text();
             if (response === "USER_ALREADY_IN_CLASS") {
                 alert("El ususario ya esta registrado en la clase");
