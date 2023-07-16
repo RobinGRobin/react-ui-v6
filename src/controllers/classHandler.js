@@ -49,6 +49,7 @@ export async function getProfessorClassesRegistered(idUser, token) {
     var headers = new Headers();
     headers.append("Content-type", "application/json");
     headers.append("Authorizaton", token);
+    console.log("token received: ", token);
 
     const requestOptions = {
         method: "GET",
