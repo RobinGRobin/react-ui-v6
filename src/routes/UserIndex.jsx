@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 export default function UserIndex() {
     const auth = useAuthUser();
     const userInfo = auth();
+    console.log("User token: ", userInfo.token);
     const [classInfo, setClassInfo] = useState([]);
 
     const UserClases = async (idUser) => {

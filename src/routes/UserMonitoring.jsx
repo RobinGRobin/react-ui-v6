@@ -8,6 +8,7 @@ export default function UserMonitoring() {
     const { idClass } = useParams();
     const auth = useAuthUser();
     const userInfo = auth();
+    console.log("User token: ", userInfo.token);
     const webCamRef = useRef(null);
     const [emotionData, setEmotionData] = useState({
         calm: "",
