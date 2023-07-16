@@ -8,7 +8,6 @@ export default function UserMonitoring() {
     const { idClass } = useParams();
     const auth = useAuthUser();
     const userInfo = auth();
-    console.log("User token: ", userInfo.token);
     const webCamRef = useRef(null);
     const [emotionData, setEmotionData] = useState({
         calm: "",
@@ -30,8 +29,7 @@ export default function UserMonitoring() {
                 const emotion = await monitoring(
                     imageSrc,
                     userInfo.id,
-                    idClass,
-                    userInfo.token
+                    idClass
                 );
                 times++;
                 if (times > 12 || !webCamRef) {
@@ -48,7 +46,7 @@ export default function UserMonitoring() {
     async function emotionsInClass(idClass) {
         let dataClass;
         if (emotionData.angry === "") {
-            dataClass = await monitoringProfessor(idClass, userInfo.token);
+            dataClass = await monitoringProfessor(idClass);
         }
         const jsonData = JSON.parse(await dataClass.text());
         setEmotionData({

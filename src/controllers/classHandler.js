@@ -2,7 +2,7 @@ const registerUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 const registerUserInClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 const getUserClassesURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/user/`;
 
-export async function registerNewClass(updates, idprofessor, token) {
+export async function registerNewClass(updates, idprofessor) {
     const registerClassBody = {
         name: updates.nombreClase.value,
         group: updates.grupoClase.value,
@@ -11,7 +11,6 @@ export async function registerNewClass(updates, idprofessor, token) {
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("Authorizaton", token);
 
     const requestOptions = {
         method: "POST",
@@ -23,14 +22,13 @@ export async function registerNewClass(updates, idprofessor, token) {
     return fetch(registerUserURL, requestOptions);
 }
 
-export async function registerUserInClass(updates, idStudent, token) {
+export async function registerUserInClass(updates, idStudent) {
     const addStudentBody = {
         idStudent: idStudent,
     };
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("Authorizaton", token);
 
     const requestOptions = {
         method: "PUT",
@@ -45,11 +43,9 @@ export async function registerUserInClass(updates, idStudent, token) {
     );
 }
 
-export async function getProfessorClassesRegistered(idUser, token) {
+export async function getProfessorClassesRegistered(idUser) {
     var headers = new Headers();
     headers.append("Content-type", "application/json");
-    headers.append("Authorizaton", token);
-    console.log("token received: ", token);
 
     const requestOptions = {
         method: "GET",
