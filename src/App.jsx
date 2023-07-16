@@ -36,14 +36,6 @@ function App() {
                         }
                     />
                     <Route
-                        path=":idUser/:idClass"
-                        element={
-                            <RequireAuth loginPath="/login">
-                                <DetailClass />
-                            </RequireAuth>
-                        }
-                    />
-                    <Route
                         path=":idUser/:idClass/monitoring"
                         element={
                             <RequireAuth loginPath="/login">
