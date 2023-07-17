@@ -8,7 +8,6 @@ export default function Register() {
         try {
             const response = await registerUser(event.target);
             response.json().then((data) => {
-                console.log(data);
                 alert(
                     "Usuario creado correctamente, ahora puedes iniciar sesión"
                 );

@@ -15,7 +15,6 @@ export default function UserIndex() {
     const UserClases = async (idUser) => {
         const classes = await getProfessorClassesRegistered(idUser);
         const dataPre = JSON.parse(await classes.text());
-        console.log(dataPre);
         for (let i = 0; i < dataPre.length; i++) {
             if (
                 !classInfo.find((element) => element.name === dataPre[i].name)
@@ -64,7 +63,7 @@ export default function UserIndex() {
             } else {
                 const Message = "Clase registrada: " + dataReceived;
                 alert(Message);
-                //location.reload();
+                location.reload();
             }
         } catch (error) {
             console.log(error);
