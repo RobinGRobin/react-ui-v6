@@ -43,11 +43,6 @@ export async function loginUser(updates) {
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
 
-    console.log({
-        email: updates.email.value,
-        password: updates.passwordLogin.value,
-    });
-
     const requestOptions = {
         method: "POST",
         headers: headers,

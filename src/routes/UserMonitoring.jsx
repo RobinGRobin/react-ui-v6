@@ -18,6 +18,7 @@ export default function UserMonitoring() {
         angry: "",
         disgusted: "",
         happy: "",
+        distracted: "",
     });
 
     let times = 0;
@@ -31,6 +32,7 @@ export default function UserMonitoring() {
                     userInfo.id,
                     idClass
                 );
+                console.log("emotion on execution ", times, ": ", emotion);
                 times++;
                 if (times > 12 || !webCamRef) {
                     times = 0;
@@ -50,17 +52,23 @@ export default function UserMonitoring() {
         }
         const jsonData = JSON.parse(await dataClass.text());
         setEmotionData({
-            calm: jsonData.filter((element) => element.name == "CALM").length,
-            surprise: jsonData.filter((element) => element.name == "SURPRISE")
+            calm: jsonData.filter((element) => element.name === "CALM").length,
+            surprise: jsonData.filter((element) => element.name === "SURPRISED")
                 .length,
-            fear: jsonData.filter((element) => element.name == "FEAR").length,
-            sad: jsonData.filter((element) => element.name == "SAD").length,
-            confused: jsonData.filter((element) => element.name == "CONFUSED")
+            fear: jsonData.filter((element) => element.name === "FEAR").length,
+            sad: jsonData.filter((element) => element.name === "SAD").length,
+            confused: jsonData.filter((element) => element.name === "CONFUSED")
                 .length,
-            angry: jsonData.filter((element) => element.name == "ANGRY").length,
-            disgusted: jsonData.filter((element) => element.name == "DISGUSTED")
+            angry: jsonData.filter((element) => element.name === "ANGRY")
                 .length,
-            happy: jsonData.filter((element) => element.name == "HAPPY").length,
+            disgusted: jsonData.filter(
+                (element) => element.name === "DISGUSTED"
+            ).length,
+            happy: jsonData.filter((element) => element.name === "HAPPY")
+                .length,
+            distracted: jsonData.filter(
+                (element) => element.name === "NO_FACE_DETECTED"
+            ).length,
         });
     }
 
@@ -81,7 +89,9 @@ export default function UserMonitoring() {
                 {executeMonitoring()}
                 <div className="monitoring-container">
                     <h1 className="monitoring-flag">
-                        Monitoreo en marcha, atiende a la videoconferencia
+                        Monitoreo en marcha, atiende a la videoconferencia.
+                        Cuando se te indique, pulsa el botón para terminar el
+                        monitoreo.
                     </h1>
                 </div>
                 <div className="monitoring-container">
@@ -111,6 +121,7 @@ export default function UserMonitoring() {
                             <h3>ENOJO: {emotionData.angry}</h3>
                             <h3>DISGUSTO: {emotionData.disgusted}</h3>
                             <h3>FELICIDAD: {emotionData.happy}</h3>
+                            <h3>DISTRAIDO: {emotionData.distracted}</h3>
                         </div>
                     </div>
                 }

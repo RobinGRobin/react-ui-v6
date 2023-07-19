@@ -4,7 +4,7 @@ export default function Index() {
     return (
         <div className="row row-content">
             <div className="col">
-                <h1 className="brand-slogan">Aprende felíz</h1>
+                <h1 className="brand-slogan">Aprende Felíz</h1>
                 <p className="brand-description">
                     Estudios recientes han demostrado que incluir las Emociones
                     durante el proceso de aprendizaje, mejora los resultados.
