@@ -51,6 +51,7 @@ export default function UserMonitoring() {
             dataClass = await monitoringProfessor(idClass);
         }
         const jsonData = JSON.parse(await dataClass.text());
+        console.log("Array de emociones: ", jsonData);
         setEmotionData({
             calm: jsonData.filter((element) => element.name === "CALM").length,
             surprise: jsonData.filter((element) => element.name === "SURPRISED")
