@@ -32,7 +32,6 @@ export default function UserMonitoring() {
                     userInfo.id,
                     idClass
                 );
-                console.log("emotion on execution ", times, ": ", emotion);
                 times++;
                 if (times > 12 || !webCamRef) {
                     times = 0;
