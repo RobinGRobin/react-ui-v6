@@ -7,8 +7,6 @@ import Register from "./routes/Register";
 import UserRoot from "./routes/UserRoot";
 import UserIndex from "./routes/UserIndex";
 import UserMonitoring from "./routes/UserMonitoring";
-import Card from "./design/Card";
-import DetailClass from "./routes/DetailClass";
 
 function App() {
     return (
@@ -44,10 +42,6 @@ function App() {
                         }
                     />
                 </Route>
-                <Route
-                    path="/card-design-page"
-                    element={<Card title={"Clase de prueba"} percent={33} />}
-                />
             </Routes>
         </div>
     );

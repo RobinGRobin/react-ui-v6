@@ -1,6 +1,11 @@
 const monitoringURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`;
 const monitoringProfessorURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`;
 
+/*
+const monitoringURL = `http://localhost:3002/emotion/`;
+const monitoringProfessorURL = `http://localhost:3002/emotion/`;
+*/
+
 export async function monitoring(image, idUser, idClass) {
     const base64Response = await fetch(image);
     const blobBytes = await base64Response.blob();
@@ -12,6 +17,8 @@ export async function monitoring(image, idUser, idClass) {
         body: formdata,
         redirect: "follow",
     };
+
+    // URL Style: http://server:port/emotion/idUser/idClass
 
     const monitoringUserEmotionURL = monitoringURL + idUser + "/" + idClass;
 
@@ -27,6 +34,8 @@ export async function monitoringProfessor(idClass) {
         headers: headers,
         redirect: "follow",
     };
+
+    // URL Style: http:server:port/emotion/idClass
 
     return fetch(monitoringProfessorURL + idClass, requestOptions);
 }

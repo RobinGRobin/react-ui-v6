@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 import Webcam from "react-webcam";
 import { monitoring, monitoringProfessor } from "../controllers/emotionHandler";
@@ -9,6 +9,7 @@ export default function UserMonitoring() {
     const auth = useAuthUser();
     const userInfo = auth();
     const webCamRef = useRef(null);
+    const [onMonitoring, setOnMonitoring] = useState(false);
     const [emotionData, setEmotionData] = useState({
         calm: "",
         surprise: "",
@@ -21,11 +22,10 @@ export default function UserMonitoring() {
         distracted: "",
     });
 
-    let times = 0;
-
     function executeMonitoring() {
-        const intervalId = setInterval(async () => {
-            try {
+        let times = 0;
+        useEffect(() => {
+            const intervalId = setInterval(async () => {
                 const imageSrc = webCamRef.current.getScreenshot();
                 const emotion = await monitoring(
                     imageSrc,
@@ -33,15 +33,12 @@ export default function UserMonitoring() {
                     idClass
                 );
                 times++;
-                if (times > 12 || !webCamRef) {
+                if (times >= 10 || !webCamRef) {
                     times = 0;
                     clearInterval(intervalId);
                 }
-            } catch (error) {
-                console.log(error);
-                clearInterval(intervalId);
-            }
-        }, 300000);
+            }, 3000);
+        }, []);
     }
 
     async function emotionsInClass(idClass) {
