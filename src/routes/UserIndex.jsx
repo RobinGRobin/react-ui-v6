@@ -35,10 +35,10 @@ export default function UserIndex() {
         }
     };
 
-    const handleDeleteClasss = async (accessCode) => {
+    const handleDeleteClasss = async (event) => {
         try {
             const response = await deleteClass(
-                accessCode,
+                event.target,
                 userInfo.type,
                 userInfo.id
             );
@@ -74,15 +74,6 @@ export default function UserIndex() {
                     >
                         Iniciar Monitoreo
                     </Link>
-                </div>
-                <div className="col">
-                    <button
-                        className="btn custom-register"
-                        type="submit"
-                        onSubmit={handleDeleteClasss(item.accessCode)}
-                    >
-                        Eliminar
-                    </button>
                 </div>
             </div>
         ));
@@ -120,6 +111,49 @@ export default function UserIndex() {
             }
         } catch (error) {
             console.log(error), alert("Ha ocurrido un error");
+        }
+    };
+
+    const FormDeleteClass = () => {
+        if (classInfo) {
+            return (
+                <div className="delete-class-form">
+                    <div className="col-md-7">
+                        <div className="data-form-delete">
+                            <p>Eliminar una clase</p>
+                            <h5>Ingresa el código de acceso</h5>
+                            <form
+                                onSubmit={(event) => {
+                                    event.preventDefault();
+                                    handleDeleteClasss(event);
+                                }}
+                            >
+                                <div className="row row-form-container">
+                                    <div className="col">
+                                        <label className="form-label custom-label">
+                                            Código de acceso
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-control custom-form"
+                                            name="accessCode"
+                                            placeholder="Código"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="submit-button-container">
+                                    <button
+                                        className="btn btn-primary custom-btn"
+                                        type="submit"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            );
         }
     };
 
@@ -236,6 +270,8 @@ export default function UserIndex() {
                     <div className="row">{ShowUserClasses()}</div>
                 </div>
                 {FormClass(userInfo.id, userInfo.type)}
+                <br></br>
+                {FormDeleteClass()}
             </div>
         </>
     );

@@ -58,19 +58,22 @@ export async function getProfessorClassesRegistered(idUser) {
     return fetch(getUserClassesURL + idUser, requestOptions);
 }
 
-export async function deleteClass(accessCode, userType, studentId) {
+export async function deleteClass(updates, userType, studentId) {
     var requestOptions = {
         method: "DELETE",
         redirect: "follow",
     };
 
     if (userType === "professor") {
-        return fetch(professorDeleteClassURL + accessCode, requestOptions);
+        return fetch(
+            professorDeleteClassURL + updates.accessCode.value,
+            requestOptions
+        );
     }
 
     if (userType === "student") {
         return fetch(
-            studentDeleteClasURL + studentId + "/" + accessCode,
+            studentDeleteClasURL + studentId + "/" + updates.accessCode.value,
             requestOptions
         );
     }

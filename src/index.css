@@ -225,6 +225,37 @@
   padding-top: 2em;
 }
 
+.data-form-delete .submit-button-container {
+  padding-top: 2em;
+}
+
+.data-form-delete {
+  padding: 2.5em 2.5em 2.5em 2.5em;
+}
+
+.data-form-delete h5 {
+  color: #fff;
+}
+
+.data-form-delete {
+    background-color: #052D56 !important;
+}
+
+.data-form-delete .custom-form {
+  color: #052D56 !important;
+  background: #8AB7E5 !important;
+}
+
+.data-form-delete .custom-form::placeholder{
+  color: #052D56 !important;
+}
+
+.delete-class-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Detail Class Page */
 
 .class-detail-container {
