@@ -36,17 +36,22 @@ export default function UserIndex() {
     };
 
     const handleDeleteClasss = async (accessCode) => {
-        const response = await deleteClass(
-            accessCode,
-            userInfo.type,
-            userInfo.id
-        );
-        const responseJSON = JSON.parse(await response.text());
-        if (responseJSON === "NO_CLASS_INFO_FOUND") {
-            alert("No hay registro de la clase");
+        try {
+            const response = await deleteClass(
+                accessCode,
+                userInfo.type,
+                userInfo.id
+            );
+            const responseJSON = JSON.parse(await response.text());
+            if (responseJSON === "NO_CLASS_INFO_FOUND") {
+                alert("No hay registro de la clase");
+            }
+            alert("Clase eliminada con éxito");
+            location.reload();
+        } catch (error) {
+            console.log(error);
+            alert(error);
         }
-        alert("Clase eliminada con éxito");
-        location.reload();
     };
 
     // This function shows the user's classes register
@@ -71,12 +76,13 @@ export default function UserIndex() {
                     </Link>
                 </div>
                 <div className="col">
-                    <Link
+                    <button
                         className="btn custom-register"
-                        onClick={handleDeleteClasss(item.accessCode)}
+                        type="submit"
+                        onSubmit={handleDeleteClasss(item.accessCode)}
                     >
                         Eliminar
-                    </Link>
+                    </button>
                 </div>
             </div>
         ));
