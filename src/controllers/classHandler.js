@@ -1,6 +1,8 @@
 const registerUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 const registerUserInClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 const getUserClassesURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/user/`;
+const professorDeleteClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/professor/`;
+const studentDeleteClasURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 
 export async function registerNewClass(updates, idprofessor) {
     const registerClassBody = {
@@ -54,4 +56,22 @@ export async function getProfessorClassesRegistered(idUser) {
     };
 
     return fetch(getUserClassesURL + idUser, requestOptions);
+}
+
+export async function deleteClass(accessCode, userType, studentId) {
+    var requestOptions = {
+        method: "DELETE",
+        redirect: "follow",
+    };
+
+    if (userType === "professor") {
+        return fetch(professorDeleteClassURL + accessCode, requestOptions);
+    }
+
+    if (userType === "student") {
+        return fetch(
+            studentDeleteClasURL + studentId + "/" + accessCode,
+            requestOptions
+        );
+    }
 }

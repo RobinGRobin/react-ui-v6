@@ -3,6 +3,7 @@ import {
     registerNewClass,
     registerUserInClass,
     getProfessorClassesRegistered,
+    deleteClass,
 } from "../controllers/classHandler";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,10 +13,14 @@ export default function UserIndex() {
     const userInfo = auth();
     const [classInfo, setClassInfo] = useState([]);
 
+    // This function makes a call to the rest API to get the user classes information
     const UserClases = async (idUser) => {
+        // Rest API call
         const classes = await getProfessorClassesRegistered(idUser);
         const dataPre = JSON.parse(await classes.text());
+        // Sets the state variable with the information from the database
         for (let i = 0; i < dataPre.length; i++) {
+            // Verifies that there´s no data repeated
             if (
                 !classInfo.find((element) => element.name === dataPre[i].name)
             ) {
@@ -30,7 +35,23 @@ export default function UserIndex() {
         }
     };
 
+    const handleDeleteClasss = async (accessCode) => {
+        const response = await deleteClass(
+            accessCode,
+            userInfo.type,
+            userInfo.id
+        );
+        const responseJSON = JSON.parse(await response.text());
+        if (responseJSON === "NO_CLASS_INFO_FOUND") {
+            alert("No hay registro de la clase");
+        }
+        alert("Clase eliminada con éxito");
+        location.reload();
+    };
+
+    // This function shows the user's classes register
     const ShowUserClasses = () => {
+        // classInfo state hook allows to get the user classes information if there's no class register, this function won't show anything
         return classInfo.map((item) => (
             <div className="row" key={item.name}>
                 <div className="col">
@@ -47,6 +68,14 @@ export default function UserIndex() {
                         to={`/user/${userInfo.id}/${item.idClass}/monitoring`}
                     >
                         Iniciar Monitoreo
+                    </Link>
+                </div>
+                <div className="col">
+                    <Link
+                        className="btn custom-register"
+                        onClick={handleDeleteClasss(item.accessCode)}
+                    >
+                        Eliminar
                     </Link>
                 </div>
             </div>
@@ -88,6 +117,7 @@ export default function UserIndex() {
         }
     };
 
+    // Shows the form to register a new class or to join a new class with an access code depending on the user type
     const FormClass = (idUser, userType) => {
         if (userType === "professor") {
             return (
@@ -188,7 +218,8 @@ export default function UserIndex() {
         }
     };
 
-    // Ejecutar UserClasses para obtener las materias registradas
+    // This function is executed everytime that the component is
+    // rendered in order to get the user's classes register from db
     UserClases(userInfo.id);
 
     return (

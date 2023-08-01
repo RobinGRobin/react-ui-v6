@@ -9,7 +9,6 @@ export default function UserMonitoring() {
     const auth = useAuthUser();
     const userInfo = auth();
     const webCamRef = useRef(null);
-    const [onMonitoring, setOnMonitoring] = useState(false);
     const [emotionData, setEmotionData] = useState({
         calm: "",
         surprise: "",
