@@ -6,7 +6,7 @@ import {
     deleteClass,
 } from "../controllers/classHandler";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import CardClassComponent from "../components/CardClassComponent";
 
 export default function UserIndex() {
     const auth = useAuthUser();
@@ -35,6 +35,7 @@ export default function UserIndex() {
         }
     };
 
+    // This function can be executed by the professor or the student to delete a class register
     const handleDeleteClasss = async (event) => {
         try {
             const response = await deleteClass(
@@ -57,28 +58,23 @@ export default function UserIndex() {
     // This function shows the user's classes register
     const ShowUserClasses = () => {
         // classInfo state hook allows to get the user classes information if there's no class register, this function won't show anything
-        return classInfo.map((item) => (
-            <div className="row" key={item.name}>
-                <div className="col">
-                    <Link className="btn custom-access">
-                        Access code: {item.accessCode}
-                    </Link>
-                </div>
-                <div className="col">
-                    <h3>{item.name}</h3>
-                </div>
-                <div className="col">
-                    <Link
-                        className="btn custom-register"
-                        to={`/user/${userInfo.id}/${item.idClass}/monitoring`}
-                    >
-                        Iniciar Monitoreo
-                    </Link>
-                </div>
+        return (
+            <div className="row row-class-content">
+                {classInfo.map((item) => {
+                    return (
+                        <CardClassComponent
+                            key={item.idClass}
+                            classTitle={`${item.name}`}
+                            link={`/user/${userInfo.id}/${item.idClass}/monitoring`}
+                            code={`${item.accessCode}`}
+                        />
+                    );
+                })}
             </div>
-        ));
+        );
     };
 
+    // This function is executed by the professor to register a new class
     const handleSubmitProfessor = async (event, idUser) => {
         const data = event.target;
         try {
@@ -97,6 +93,7 @@ export default function UserIndex() {
         }
     };
 
+    // This function is executed by the student to join a class through an access code.
     const handleSubmitStudent = async (event, idUser) => {
         const data = event.target;
         try {
@@ -266,9 +263,8 @@ export default function UserIndex() {
         <>
             <div className="user-container">
                 <p>Clases registradas</p>
-                <div className="class-container">
-                    <div className="row">{ShowUserClasses()}</div>
-                </div>
+                <br />
+                <div className="class-container">{ShowUserClasses()}</div>
                 {FormClass(userInfo.id, userInfo.type)}
                 <br></br>
                 {FormDeleteClass()}

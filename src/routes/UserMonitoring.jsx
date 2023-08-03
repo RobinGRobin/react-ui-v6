@@ -3,6 +3,7 @@ import { useAuthUser } from "react-auth-kit";
 import Webcam from "react-webcam";
 import { monitoring, monitoringProfessor } from "../controllers/emotionHandler";
 import { Link, useParams } from "react-router-dom";
+import CardEmotionComponent from "../components/CardEmotionComponent";
 
 export default function UserMonitoring() {
     const { idClass } = useParams();
@@ -67,8 +68,7 @@ export default function UserMonitoring() {
         });
     }
 
-    emotionsInClass(idClass);
-
+    // If the user is a student, this section will be executed
     if (userInfo.type === "student") {
         return (
             <>
@@ -101,25 +101,58 @@ export default function UserMonitoring() {
         );
     }
 
+    // If the user is a teacher, this section will be executed
     if (userInfo.type === "professor") {
+        emotionsInClass(idClass);
         return (
             <>
-                {
-                    <div className="user-container">
-                        <p>Emociones registradas</p>
-                        <div className="class-container">
-                            <h3>CALMA: {emotionData.calm}</h3>
-                            <h3>SORPRESA: {emotionData.surprise}</h3>
-                            <h3>MIEDO: {emotionData.fear}</h3>
-                            <h3>TRISTEZA: {emotionData.sad}</h3>
-                            <h3>CONFUSIÓN: {emotionData.confused}</h3>
-                            <h3>ENOJO: {emotionData.angry}</h3>
-                            <h3>DISGUSTO: {emotionData.disgusted}</h3>
-                            <h3>FELICIDAD: {emotionData.happy}</h3>
-                            <h3>DISTRAIDO: {emotionData.distracted}</h3>
-                        </div>
+                <div className="user-emotions-container container-fluid">
+                    <br />
+                    <p>Emociones registradas</p>
+                    <h6>
+                        A continuación se muestra cada una de las emociones y el
+                        número de veces que se han detectado durante el día
+                    </h6>
+                    <br />
+                    <div className="emotions-container">
+                        <CardEmotionComponent
+                            emotionTitle={`CALMA`}
+                            times={emotionData.calm}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`SORPRESA`}
+                            times={emotionData.surprise}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`MIEDO`}
+                            times={emotionData.fear}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`TRISTEZA`}
+                            times={emotionData.sad}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`CONFUSIÓN`}
+                            times={emotionData.confused}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`ENOJO`}
+                            times={emotionData.angry}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`DISGUSTO`}
+                            times={emotionData.disgusted}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`FELICIDAD`}
+                            times={emotionData.happy}
+                        />
+                        <CardEmotionComponent
+                            emotionTitle={`DISTRACCIÓN`}
+                            times={emotionData.distracted}
+                        />
                     </div>
-                }
+                </div>
             </>
         );
     }

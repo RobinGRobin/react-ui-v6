@@ -1,0 +1,29 @@
+.card-emotion {
+    background: #063462!important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border: none !important;
+    padding-top: 2em;
+}
+
+.card-emotion-title {
+    color: #ffffff !important;
+    font-size: 25px !important;
+    font-weight: 700;
+}
+
+.card-emotion-group {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.card-emotion-group p {
+    background: linear-gradient(90deg, #AE67FA -1.39%, #F49867 104.12%);
+    font-weight: 800;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

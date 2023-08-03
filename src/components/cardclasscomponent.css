@@ -1,0 +1,22 @@
+.card {
+    background: linear-gradient(130deg, #AE67FA 0%, #F49867 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border: none !important;
+}
+
+.card-title {
+    color: #ffffff !important;
+    font-size: 20px !important;
+}
+
+.card-group {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    color: #fff;
+}
+
+
