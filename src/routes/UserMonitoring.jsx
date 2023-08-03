@@ -32,6 +32,12 @@ export default function UserMonitoring() {
                     userInfo.id,
                     idClass
                 );
+                console.log(
+                    "Execution ",
+                    times,
+                    " emotion: ",
+                    await emotion.text()
+                );
                 times++;
                 if (times >= 20 || !webCamRef) {
                     times = 0;
