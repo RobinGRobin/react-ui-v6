@@ -33,11 +33,11 @@ export default function UserMonitoring() {
                     idClass
                 );
                 times++;
-                if (times >= 10 || !webCamRef) {
+                if (times >= 20 || !webCamRef) {
                     times = 0;
                     clearInterval(intervalId);
                 }
-            }, 3000);
+            }, 180000);
         }, []);
     }
 
