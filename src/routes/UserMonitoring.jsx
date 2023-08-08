@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 import Webcam from "react-webcam";
-import { monitoring, monitoringProfessor } from "../controllers/emotionHandler";
+import {
+    monitoring,
+    monitoringProfessor,
+    monitoringProfessorToday,
+} from "../controllers/emotionHandler";
 import { Link, useParams } from "react-router-dom";
-import CardEmotionComponent from "../components/CardEmotionComponent";
+import BarChart from "../components/BarChart";
+import { getClassDetail } from "../controllers/classHandler";
 
 export default function UserMonitoring() {
     const { idClass } = useParams();
@@ -21,6 +26,36 @@ export default function UserMonitoring() {
         happy: "",
         distracted: "",
     });
+    const [emotionDataToday, setEmotionDataToday] = useState({
+        calm: "",
+        surprise: "",
+        fear: "",
+        sad: "",
+        confused: "",
+        angry: "",
+        disgusted: "",
+        happy: "",
+        distracted: "",
+    });
+    const [detailClass, setDetailClass] = useState({
+        name: "",
+        group: "",
+        accessCode: "",
+    });
+
+    async function getClassData() {
+        let detailClassFetch;
+        if (detailClass.name === "") {
+            detailClassFetch = await getClassDetail(idClass);
+        }
+        const jsonDetailClass = JSON.parse(await detailClassFetch.text());
+        console.log(jsonDetailClass);
+        setDetailClass({
+            name: jsonDetailClass.name,
+            group: jsonDetailClass.group,
+            accessCode: jsonDetailClass.accessCode,
+        });
+    }
 
     function executeMonitoring() {
         let times = 0;
@@ -31,12 +66,6 @@ export default function UserMonitoring() {
                     imageSrc,
                     userInfo.id,
                     idClass
-                );
-                console.log(
-                    "Execution ",
-                    times,
-                    " emotion: ",
-                    await emotion.text()
                 );
                 times++;
                 if (times >= 20 || !webCamRef) {
@@ -69,6 +98,39 @@ export default function UserMonitoring() {
             happy: jsonData.filter((element) => element.name === "HAPPY")
                 .length,
             distracted: jsonData.filter(
+                (element) => element.name === "NO_FACE_DETECTED"
+            ).length,
+        });
+    }
+
+    async function emotionsInClassToday(idClass) {
+        let dataClassToday;
+        if (emotionDataToday.angry === "") {
+            // avoid executing the function everytime
+            dataClassToday = await monitoringProfessorToday(idClass);
+        }
+        const jsonDataToday = JSON.parse(await dataClassToday.text());
+        setEmotionDataToday({
+            calm: jsonDataToday.filter((element) => element.name === "CALM")
+                .length,
+            surprise: jsonDataToday.filter(
+                (element) => element.name === "SURPRISED"
+            ).length,
+            fear: jsonDataToday.filter((element) => element.name === "FEAR")
+                .length,
+            sad: jsonDataToday.filter((element) => element.name === "SAD")
+                .length,
+            confused: jsonDataToday.filter(
+                (element) => element.name === "CONFUSED"
+            ).length,
+            angry: jsonDataToday.filter((element) => element.name === "ANGRY")
+                .length,
+            disgusted: jsonDataToday.filter(
+                (element) => element.name === "DISGUSTED"
+            ).length,
+            happy: jsonDataToday.filter((element) => element.name === "HAPPY")
+                .length,
+            distracted: jsonDataToday.filter(
                 (element) => element.name === "NO_FACE_DETECTED"
             ).length,
         });
@@ -109,55 +171,68 @@ export default function UserMonitoring() {
 
     // If the user is a teacher, this section will be executed
     if (userInfo.type === "professor") {
+        getClassData();
         emotionsInClass(idClass);
+        emotionsInClassToday(idClass);
         return (
             <>
                 <div className="user-emotions-container container-fluid">
                     <br />
-                    <p>Emociones registradas</p>
+                    <p style={{ textAlign: "center" }}>{detailClass.name}</p>
+                    <br />
+                    <br />
+                    <p>Emociones registradas en la clase</p>
+                    <h6>
+                        A continuación se muestra el numero de emociones
+                        detectadas por cada tipo de emoción
+                    </h6>
+                    <br />
+                    <div
+                        className="emotion-graph-container"
+                        style={{ width: "700px", height: "350px" }}
+                    >
+                        <BarChart
+                            numEmotions={[
+                                `${emotionData.calm}`,
+                                `${emotionData.surprise}`,
+                                `${emotionData.fear}`,
+                                `${emotionData.sad}`,
+                                `${emotionData.confused}`,
+                                `${emotionData.angry}`,
+                                `${emotionData.disgusted}`,
+                                `${emotionData.happy}`,
+                                `${emotionData.distracted}`,
+                            ]}
+                        />
+                    </div>
+                    <br />
+                    <br />
+                    <p>Emociones registradas durante el día</p>
                     <h6>
                         A continuación se muestra cada una de las emociones y el
                         número de veces que se han detectado durante el día
                     </h6>
                     <br />
-                    <div className="emotions-container">
-                        <CardEmotionComponent
-                            emotionTitle={`CALMA`}
-                            times={emotionData.calm}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`SORPRESA`}
-                            times={emotionData.surprise}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`MIEDO`}
-                            times={emotionData.fear}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`TRISTEZA`}
-                            times={emotionData.sad}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`CONFUSIÓN`}
-                            times={emotionData.confused}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`ENOJO`}
-                            times={emotionData.angry}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`DISGUSTO`}
-                            times={emotionData.disgusted}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`FELICIDAD`}
-                            times={emotionData.happy}
-                        />
-                        <CardEmotionComponent
-                            emotionTitle={`DISTRACCIÓN`}
-                            times={emotionData.distracted}
+                    <div
+                        className="emotion-graph-container"
+                        style={{ width: "700px", height: "350px" }}
+                    >
+                        <BarChart
+                            numEmotions={[
+                                `${emotionDataToday.calm}`,
+                                `${emotionDataToday.surprise}`,
+                                `${emotionDataToday.fear}`,
+                                `${emotionDataToday.sad}`,
+                                `${emotionDataToday.confused}`,
+                                `${emotionDataToday.angry}`,
+                                `${emotionDataToday.disgusted}`,
+                                `${emotionDataToday.happy}`,
+                                `${emotionDataToday.distracted}`,
+                            ]}
                         />
                     </div>
+                    <br />
+                    <br />
                 </div>
             </>
         );

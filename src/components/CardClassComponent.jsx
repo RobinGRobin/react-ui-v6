@@ -8,7 +8,9 @@ export default function CardClassComponent(props) {
             <div className="card-body">
                 <h2 className="card-title">{props.classTitle}</h2>
                 <br />
-                <h5 className="card-group">Código de acceso: {props.code}</h5>
+                <h5 className="card-group">
+                    Código de acceso: <br /> {props.code}
+                </h5>
                 <br />
                 <Link
                     to={`${props.link}`}

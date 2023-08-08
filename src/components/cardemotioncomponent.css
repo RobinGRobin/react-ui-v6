@@ -1,16 +1,13 @@
 .card-emotion {
     background: #063462!important;
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
     border: none !important;
     padding-top: 2em;
 }
 
 .card-emotion-title {
     color: #ffffff !important;
-    font-size: 25px !important;
+    font-size: 20px !important;
     font-weight: 700;
 }
 
