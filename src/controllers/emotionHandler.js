@@ -1,11 +1,12 @@
 // RUTAS PARA EL DESPLIEGUE
-/* const monitoringURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`;
-const monitoringProfessorURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`; */
+const monitoringURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`;
+const monitoringProfessorURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/`;
+const monitoringProfessorTodayURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/emotion/today/`;
 
 // RUTAS PARA EL DESARROLLO
-const monitoringURL = `http://localhost:3002/emotion/`;
+/* const monitoringURL = `http://localhost:3002/emotion/`;
 const monitoringProfessorURL = `http://localhost:3002/emotion/`;
-const monitoringProfessorTodayURL = `http://localhost:3002/emotion/today/`;
+const monitoringProfessorTodayURL = `http://localhost:3002/emotion/today/`; */
 
 export async function monitoring(image, idUser, idClass) {
     const base64Response = await fetch(image);
