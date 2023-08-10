@@ -5,7 +5,7 @@ import {
     getProfessorClassesRegistered,
     deleteClass,
 } from "../controllers/classHandler";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardClassComponent from "../components/CardClassComponent";
 
 export default function UserIndex() {
@@ -66,6 +66,7 @@ export default function UserIndex() {
                             key={item.idClass}
                             classTitle={`${item.name}`}
                             link={`/user/${userInfo.id}/${item.idClass}/monitoring`}
+                            detailLink={`/user/${userInfo.id}/${item.idClass}/detail`}
                             code={`${item.accessCode}`}
                         />
                     );

@@ -5,6 +5,7 @@ const getUserClassesURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/
 const professorDeleteClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/professor/`;
 const studentDeleteClasURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
 const getClassDetailURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/`;
+const getStudentsClassURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/class/students/`;
 
 // RUTAS PARA EL DESARROLLO
 /* const registerUserURL = `http://localhost:3002/class/`;
@@ -12,7 +13,8 @@ const registerUserInClassURL = `http://localhost:3002/class/`;
 const getUserClassesURL = `http://localhost:3002/class/user/`;
 const professorDeleteClassURL = `http://localhost:3002/class/professor/`;
 const studentDeleteClasURL = `http://localhost:3002/class/`;
-const getClassDetailURL = `http://localhost:3002/class/`; */
+const getClassDetailURL = `http://localhost:3002/class/`;
+const getStudentsClassURL = `http://localhost:3002/class/students/`; */
 
 export async function registerNewClass(updates, idprofessor) {
     const registerClassBody = {
@@ -102,4 +104,19 @@ export async function getClassDetail(idClass) {
     // URL Style: http://server:port/class/:idClass
 
     return fetch(getClassDetailURL + idClass, requestOptions);
+}
+
+export async function getStudentsInClass(idClass) {
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const requestOptions = {
+        method: "GET",
+        headers: headers,
+        redirect: "follow",
+    };
+
+    // URL Style: http://server:port/class/students/:idClass
+
+    return fetch(getStudentsClassURL + idClass, requestOptions);
 }

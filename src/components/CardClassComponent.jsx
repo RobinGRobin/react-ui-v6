@@ -18,7 +18,9 @@ export default function CardClassComponent(props) {
                 >
                     Iniciar monitoreo
                 </Link>
-                <Link className="btn custom-login">Ver más</Link>
+                <Link to={props.detailLink} className="btn custom-login">
+                    Ver más
+                </Link>
             </div>
         </div>
     );

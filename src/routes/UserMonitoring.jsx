@@ -180,7 +180,6 @@ export default function UserMonitoring() {
                     <br />
                     <p style={{ textAlign: "center" }}>{detailClass.name}</p>
                     <br />
-                    <br />
                     <p>Emociones registradas en la clase</p>
                     <h6>
                         A continuación se muestra el numero de emociones
@@ -232,6 +231,17 @@ export default function UserMonitoring() {
                         />
                     </div>
                     <br />
+                    <br />
+                    <button
+                        className="btn btn-primary custom-btn"
+                        style={{ alignContent: "center" }}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            location.reload();
+                        }}
+                    >
+                        Actualizar
+                    </button>
                     <br />
                 </div>
             </>

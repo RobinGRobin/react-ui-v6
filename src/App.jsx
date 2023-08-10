@@ -7,6 +7,7 @@ import Register from "./routes/Register";
 import UserRoot from "./routes/UserRoot";
 import UserIndex from "./routes/UserIndex";
 import UserMonitoring from "./routes/UserMonitoring";
+import UserDetail from "./routes/UserDetail";
 
 function App() {
     return (
@@ -38,6 +39,14 @@ function App() {
                         element={
                             <RequireAuth loginPath="/login">
                                 <UserMonitoring />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path=":idUser/:idClass/detail"
+                        element={
+                            <RequireAuth loginPath="/login">
+                                <UserDetail />
                             </RequireAuth>
                         }
                     />

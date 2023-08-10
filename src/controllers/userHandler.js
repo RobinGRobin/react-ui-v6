@@ -1,10 +1,12 @@
 // RUTAS PARA DESPLIEGUE
 const registerUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/auth/register`;
 const loginUserURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/auth/login`;
+const getStudentDataURL = `https://api-emotiva-7ec548e73d6b.herokuapp.com/user/`;
 
 // RUTAS PARA DESARROLLO
 /* const registerUserURL = `http://localhost:3002/auth/register`;
-const loginUserURL = `http://localhost:3002/auth/login`; */
+const loginUserURL = `http://localhost:3002/auth/login`;
+const getStudentDataURL = `http://localhost:3002/user/`; */
 
 function calculateAge(day, month, year) {
     let today = new Date();
@@ -59,4 +61,19 @@ export async function loginUser(updates) {
     };
 
     return fetch(loginUserURL, requestOptions);
+}
+
+export async function getUserData(idStudent) {
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const requestOptions = {
+        method: "GET",
+        headers: headers,
+        redirect: "follow",
+    };
+
+    // URL Style: http://server:port/class/:idClass
+
+    return fetch(getStudentDataURL + idStudent, requestOptions);
 }
