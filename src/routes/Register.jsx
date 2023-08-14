@@ -160,7 +160,7 @@ export default function Register() {
                                     type="number"
                                     className="form-control custom-form"
                                     name="yearselect"
-                                    placeholder="1998"
+                                    placeholder="Ejemplo: 1998"
                                 />
                             </div>
                         </div>
